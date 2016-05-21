@@ -1,0 +1,18 @@
+INSTALL YESOD:
+
+0) sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 575159689BEFB442
+
+1) echo 'deb http://download.fpcomplete.com/ubuntu trusty main'|sudo tee /etc/apt/sources.list.d/fpco.list
+
+2) sudo apt-get update && sudo apt-get install stack -y
+
+3) stack new web yesod-hello-world
+
+4) espere completar os 103 passos...
+
+cd web/
+stack setup
+
+...espera concluir...
+
+stack build
