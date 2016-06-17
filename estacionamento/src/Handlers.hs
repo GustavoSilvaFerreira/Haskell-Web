@@ -387,41 +387,20 @@ getContratoR = defaultLayout $ do
                 url: "@{ListaContratoR}",
                 type: "GET",
     		}).done(function(e){
-            		for(var i = 0; i<e.data.length; i++){
-                		itens+="<tr><td>";
-                		itens+="<span id='codigo'>"
-                		itens+=e.data[i].id;
-                		itens+="</span>"
-                		itens+="</td><td>";
-            	    	itens+="<span id='valor'>"
-                		itens+=e.data[i].valor;
-                		itens+="</span>"
-                		itens+="</td><td>";
-                		itens+="<span id='inic'>"
-                		itens+=e.data[i].contratoinc;
-                		itens+="</span>"
-                		itens+="</td><td>";
-                		itens+="<span id='fim'>"
-                		itens+=e.data[i].contratofim;
-                		itens+="</span>"
-                		itens+="</td><td>";
-                		itens+="<span id='qtparcelas'>"
-                		itens+=e.data[i].quantidadeparcela;
-                		itens+="</span>"
-                		itens+="</td><td>";
-                		itens+="<span id='qtvagas'>"
-                		itens+=e.data[i].quantidadevagas;
-                		itens+="</span>"
-                		itens+="</td><td>";
-                		itens+="<span id='clienteid'>"
-                		itens+=e.data[i].clienteid;
-                		itens+="</span>"
-                		itens+="</td><td>";
-            	      	itens+="<button class='btn btn-danger' onclick='excluirContrato("+e.data[i].id+")'>Excluir</button>";
-			            itens+="</td></tr>";
-                	}
-                	$("#tb").html(itens);
-                	selecaoContrato();
+    		    e.data.map(function(x){
+    		        itens+="<tr>";
+                	itens+="<td><span id='codigo'>"+x.id+"</span></td>";
+            	    itens+="<td><span id='valor'>"+x.valor+"</span></td>";
+                	itens+="<td><span id='inic'>"+x.contratoinc+"</span></td>";
+                	itens+="<td><span id='fim'>"+x.contratofim+"</span></td>";
+                	itens+="<td><span id='qtparcelas'>"+x.quantidadeparcela+"</span></td>";
+                	itens+="<td><span id='qtvagas'>"+x.quantidadevagas+"</span></td>";
+                	itens+="<td><span id='clienteid'>"+x.clienteid+"</span></td>";
+            	    itens+="<td><button class='btn btn-danger' onclick='excluirContrato("+x.id+")'>Excluir</button></td>";
+			        itens+="</tr>";    
+    		    });
+                $("#tb").html(itens);
+                selecaoContrato();
 			});
 		}
 
