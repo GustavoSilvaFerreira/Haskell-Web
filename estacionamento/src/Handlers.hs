@@ -517,33 +517,23 @@ getConveniadoR = defaultLayout $ do
                 url: "@{ListaConveniadoR}",
                 type: "GET",
     		}).done(function(e){
-            		for(var i = 0; i<e.data.length; i++){
-                		itens+="<tr><td>";
-                		itens+="<span id='codigo'>"
-                		itens+=e.data[i].id;
-                		itens+="</span>"
-                		itens+="</td><td>";
-            	    	itens+="<span id='nome'>"
-                		itens+=e.data[i].nome;
-                		itens+="</span>"
-                		itens+="</td><td>";
-                		itens+="<span id='desconto'>"
-                		itens+=e.data[i].percentualDesconto;
-                		itens+="</span>"
-                		itens+="</td><td>";
-                		itens+="<span id='evento'>"
-                		if (e.data[i].eventoid == null){
-                			itens+= "Nenhum";
-                		} else {
-                			itens+=e.data[i].eventoid;
-                		}
-                		itens+="</span>"
-                		itens+="</td><td>";
-            	      	itens+="<button class='btn btn-danger' onclick='excluirConveniado("+e.data[i].id+")'>Excluir</button>";
-			            itens+="</td></tr>";
+                e.data.map(function(x){
+                	itens+="<tr>";
+                	itens+="<td><span id='codigo'>"+x.id+"</span></td>";
+            	   	itens+="<td><span id='nome'>"+x.nome+"</span></td>";
+                	itens+="<td><span id='desconto'>"+x.percentualDesconto+"</span></td>";
+                	itens+="<td><span id='evento'>";
+                	if (x.eventoid == null){
+                		itens+= "Nenhum";
+                	} else {
+                		itens+=x.eventoid;
                 	}
-                	$("#tb").html(itens);
-                	selecaoConveniado();
+                	itens+="</span></td>"
+            	   	itens+="<td><button class='btn btn-danger' onclick='excluirConveniado("+x.id+")'>Excluir</button></td>";
+			        itens+="</tr>";
+                });
+                $("#tb").html(itens);
+                selecaoConveniado();
 			});
 		}
 		
@@ -554,12 +544,10 @@ getConveniadoR = defaultLayout $ do
                 url: "@{ListaEventR} ",
                 type: "GET",
     		}).done(function(e){
-            		for(var i = 0; i<e.data.length; i++){
-                		itens+="<option value="+e.data[i].id+">";
-                		itens+=e.data[i].descricao;
-                		itens+="</option>";
-                	}
-                	$("#eventoid").append(itens);
+                e.data.map(function(x){
+                	itens+="<option value="+x.id+">"+x.descricao+"</option>";
+                });
+                $("#eventoid").append(itens);
 			});
 		}
 |]
