@@ -240,59 +240,28 @@ getClientR = defaultLayout $ do
                 url: "@{ListaR}",
                 type: "GET",
     		}).done(function(e){
-            		for(var i = 0; i<e.data.length; i++){
-                		itens+="<tr><td>";
-                		itens+="<span id='cd'>"
-                		itens+=e.data[i].id;
-                		itens+="</span>"
-                		itens+="</td><td class='nomeprod'>";
-            	    	itens+="<span id='nm'>"
-                		itens+=e.data[i].nome;
-                		itens+="</span>"
-            	    	itens+="</td><td>";
-        	        	itens+="<span id='tl'>"
-                		itens+=e.data[i].telefone;
-    	            	itens+="</span>"
-	                	itens+="</td><td>";
-			            itens+="<button class='btn btn-danger' onclick='excluir("+e.data[i].id+")'>Excluir</button>";
-			            itens+="</td>";
-			            itens+="<td style='position: absolute; top: 22%; left: 80000000%'>";
-			            itens+="<span id='ba' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].bairro;
-			            itens+="</span>"
-			            itens+="<span id='cp' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].cep;
-			            itens+="</span>"
-			            itens+="<span id='cdd' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].cidade;
-			            itens+="</span>"
-			            itens+="<span id='cpj' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].cnpj;
-			            itens+="</span>"
-			            itens+="<span id='cf' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].cpf;
-			            itens+="</span>"
-			            itens+="<span id='est' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].estado;
-			            itens+="</span>"
-			            itens+="<span id='flc' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].flcliente;
-			            itens+="</span>"
-			            itens+="<span id='log' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].logradouro;
-			            itens+="</span>"
-			            itens+="<span id='raz' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].razaosocial;
-			            itens+="</span>"
-			            itens+="<span id='gr' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].rg;
-			            itens+="</span>"
-			            itens+="<span id='sx' style='text-indent:-1000000px'>"
-			            itens+=e.data[i].sexo;
-			            itens+="</span>"
-			            itens+="</td>";
-			            itens+="</tr>";
-                	}
+            	e.data.map(function(x){
+            	    itens+="<tr>";
+                	itens+="<td><span id='cd'>"+x.id+"</span></td>";
+                	itens+="<td class='nomeprod'><span id='nm'>"+x.nome+"</span></td>";
+        	        itens+="<td><span id='tl'>"+x.telefone+"</span></td>";
+        	        itens+="<td>";
+			        itens+="<button class='btn btn-danger' onclick='excluir("+x.id+")'>Excluir</button></td>";
+			        itens+="<td style='position: absolute; top: 22%; left: 80000000%'>";
+			        itens+="<span id='ba' style='text-indent:-1000000px'>"+x.bairro+"</span>";
+			        itens+="<span id='cp' style='text-indent:-1000000px'>"+x.cep+"</span>";
+			        itens+="<span id='cdd' style='text-indent:-1000000px'>"+x.cidade+"</span>";
+			        itens+="<span id='cpj' style='text-indent:-1000000px'>"+x.cnpj+"</span>";
+			        itens+="<span id='cf' style='text-indent:-1000000px'>"+x.cpf+"</span>";
+			        itens+="<span id='est' style='text-indent:-1000000px'>"+x.estado+"</span>";
+			        itens+="<span id='flc' style='text-indent:-1000000px'>"+x.flcliente+"</span>";
+			        itens+="<span id='log' style='text-indent:-1000000px'>"+x.logradouro+"</span>";
+			        itens+="<span id='raz' style='text-indent:-1000000px'>"+x.razaosocial+"</span>";
+			        itens+="<span id='gr' style='text-indent:-1000000px'>"+x.rg+"</span>";
+			        itens+="<span id='sx' style='text-indent:-1000000px'>"+x.sexo+"</span>";
+			        itens+="</td>";
+			        itens+="</tr>";
+            	});
                 	$("#tb").html(itens);
 				    $("#t1 tbody").html(itens);
 				    selecao();
